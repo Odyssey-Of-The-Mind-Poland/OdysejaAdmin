@@ -1,0 +1,109 @@
+﻿@using OdysejaAdmin.Data
+@inject RestService RestService
+
+@if (editMode)
+{
+    <tr>
+        <td>
+            <input @bind="Performance.city"
+                    type="text"
+                    class="input is-rounded"
+                    size="50"/>
+        </td>
+        <td>
+            <input @bind="Performance.team"
+                    type="text"
+                    class="input is-rounded"
+                    size="50"/>
+        </td>
+        <td>
+            <input @bind="Performance.problem"
+                    type="number"
+                    class="input is-rounded"
+                    size="10"/>
+        </td>
+        <td>
+            <input @bind="Performance.age"
+                    type="number"
+                    size="10"
+                    class="input is-rounded"/>
+        </td>
+        <td>
+            <input @bind="Performance.stage"
+                    type="number"
+                    size="10"
+                    class="input is-rounded"/>
+        </td>
+        <td>
+            <input @bind="Performance.performance"
+                    type="text"
+                    class="input is-rounded"/>
+        </td>
+        <td>
+            <input @bind="Performance.spontan"
+                    type="text"
+                    class="input is-rounded"/>
+        </td>
+        <td>
+            <button class="button is-success"
+                    @onclick="Save">
+                Zapisz
+            </button>
+        </td>
+        <td>
+            <button class="button is-danger"
+                    @onclick="Del">
+                Del
+            </button>
+        </td>
+    </tr>
+}
+else
+{
+    <tr>
+        <td>@Performance.city</td>
+        <td>@Performance.team</td>
+        <td>@Performance.problem</td>
+        <td>@Performance.age</td>
+        <td>@Performance.stage</td>
+        <td>@Performance.performance</td>
+        <td>@Performance.spontan</td>
+        <td>
+            <button class="button is-success"
+                    @onclick="Edit">
+                Edytuj
+            </button>
+        </td>
+        <td>
+            <button class="button is-danger"
+                    @onclick="Del">
+                Del
+            </button>
+        </td>
+    </tr>
+}
+
+@code
+{
+    private bool editMode;
+
+    [Parameter]
+    public Performance Performance { get; set; }
+    
+    [Parameter]
+    public EventCallback OnDelete { get; set; }
+
+    private void Edit() => editMode = true;
+
+    private void Save()
+    {
+        editMode = false;
+        RestService.Put("/admin/timeTable", Performance);
+    }
+
+    private async void Del()
+    {
+        await RestService.Delete("/admin/timeTable", Performance.id.ToString());
+        OnDelete.InvokeAsync();
+    }
+}

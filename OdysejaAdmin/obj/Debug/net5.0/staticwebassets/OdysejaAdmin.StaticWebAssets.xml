@@ -1,0 +1,5 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="_content/BlazorInputFile" Path="C:\Users\Grzybek\.nuget\packages\blazorinputfile\0.2.0\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazorise" Path="C:\Users\Grzybek\.nuget\packages\blazorise\0.9.2.1\build\..\staticwebassets\" />
+  <ContentRoot BasePath="/" Path="D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\scopedcss\bundle\" />
+</StaticWebAssets>

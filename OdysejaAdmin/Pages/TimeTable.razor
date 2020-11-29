@@ -1,0 +1,47 @@
+﻿@page "/"
+@page "/timeTable"
+@using OdysejaAdmin.Data
+@using System.Text.Json
+@inject RestService restService
+
+<Upload/>
+<table class="table">
+    <thead>
+    <tr>
+        <th><abbr>Miasto</abbr></th>
+        <th><abbr>Zespół</abbr></th>
+        <th><abbr>Problem</abbr></th>
+        <th><abbr>Wiek</abbr></th>
+        <th><abbr>Scena</abbr></th>
+        <th><abbr>Występ</abbr></th>
+        <th><abbr>Spontant</abbr></th>
+        <th><abbr>Edytuj</abbr></th>
+        <th><abbr>Del</abbr></th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in timeTable)
+        {
+            <PerformanceComponent Performance="@p"
+                                  OnDelete="@LoadData"/>
+        }
+    </tbody>
+</table>
+
+@code
+{
+    private List<Performance> timeTable = new List<Performance>();
+    
+    protected override async void OnInitialized()
+    {
+        await base.OnInitializedAsync();
+        LoadData();
+    }
+
+    private async void LoadData()
+    {
+        string response = await restService.Get("/admin/timeTable");
+        timeTable = JsonSerializer.Deserialize<List<Performance>>(response);
+        StateHasChanged();
+    }
+}

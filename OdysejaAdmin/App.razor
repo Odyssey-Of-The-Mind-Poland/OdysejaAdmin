@@ -1,0 +1,37 @@
+@implements IDisposable
+@inject AuthenticationService AuthenticationService
+@inject UserStore UserStore
+
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        @if (UserStore.GetState().IsAuth)
+        {
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)"/>   
+        }
+        else
+        {
+            <Login/>
+        }
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p>Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+@code
+{
+    private bool isAuth { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        UserStore.AddStateListeners(StateHasChanged);
+    }
+    
+    public void Dispose()
+    {
+        UserStore.RemoveStateListeners(StateHasChanged);
+    }
+}

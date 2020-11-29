@@ -1,0 +1,26 @@
+﻿@inherits Microsoft.AspNetCore.Components.LayoutComponentBase
+@inject AuthenticationService AuthenticationService
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu/>
+    </div>
+
+    <div class="main">
+        <div class="top-row px-4">
+            <a @onclick="logout">Logout</a>
+        </div>
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+</div>
+
+@code
+{
+    private void logout()
+    {
+        AuthenticationService.Logout();
+    }
+}

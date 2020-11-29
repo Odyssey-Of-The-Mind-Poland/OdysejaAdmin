@@ -1,0 +1,64 @@
+﻿@using OdysejaAdmin.Data
+@inject AuthenticationService AuthenticationService
+@inject UserStore UserStore
+
+<section class="hero is-primary is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                    <div class="box">
+                        @if (!Success)
+                        {
+                            <div class="notification is-danger">
+                                <button class="delete"
+                                        @onclick="close"/>
+                                Sorry bad credentials
+                            </div>   
+                        }
+                        <EditForm Model="@userCredentials">
+                            <div class="field">
+                                <label for="" class="label">Login</label>
+                                <div class="control has-icons-left">
+                                    <input type="login" placeholder="Login" class="input" required @bind="userCredentials.username">
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="" class="label">Password</label>
+                                <div class="control has-icons-left">
+                                    <input type="password" placeholder="*******" class="input" required @bind="userCredentials.password">
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <button class="button is-success"
+                                        @onclick="login">
+                                    Login
+                                </button>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code
+{
+    private bool Success = true;
+    private UserCredentials userCredentials { get; set; } = new UserCredentials("", "");
+
+    private async void login()
+    {
+        Success = await AuthenticationService.Authenticate(userCredentials.username, userCredentials.password);
+        UserStore.SetAuth(Success);
+    }
+
+    private void close() => Success = true;
+}

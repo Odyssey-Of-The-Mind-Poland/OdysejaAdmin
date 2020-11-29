@@ -1,0 +1,81 @@
+﻿@using ExcelDataReader
+@using OfficeOpenXml
+@using System.IO
+
+<div class="file has-name"
+     style="display: inline-block;">
+    <label class="file-label">
+        <BlazorInputFile.InputFile class="file-input"
+                                   OnChange="@ChooseFile"/>
+        <span class="file-cta">
+            <span class="file-icon">
+                <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+                Wybierz plik…
+            </span>
+        </span>
+        <span class="file-name">
+            @name
+        </span>
+    </label>
+</div>
+
+<button class="button is-primary"
+        @onclick="SendHarmonogram"
+        style="display: inline-block;">
+    Wyślij harmonogram
+</button>
+
+@code
+{
+    protected string name { get; set; } = "Nie wybrano pliku";
+    IFileListEntry file;
+
+    protected async Task ChooseFile(IFileListEntry[] files)
+    {
+        file = files.FirstOrDefault();
+        name = file.Name;
+    }
+
+    protected async Task SendHarmonogram()
+    {
+        byte[] bin = await ReadFully(file.Data);
+
+        using (MemoryStream ms = new MemoryStream(bin))
+        using (ExcelPackage package = new ExcelPackage(ms))
+        {
+            ExcelWorksheet sheet = package.Workbook.Worksheets.FirstOrDefault();
+            
+            for (int i = sheet.Dimension.Start.Row; i <= sheet.Dimension.End.Row; i++)
+            {
+                for (int j = sheet.Dimension.Start.Column; j <= sheet.Dimension.End.Column; j++)
+                {
+                    try
+                    {
+                        string currentCellValue = sheet.Cells[i, j]?.Value?.ToString();
+                        Console.WriteLine(currentCellValue);
+                    }
+                    catch(Exception e)
+                    {
+                        
+                    }
+                }
+            }
+        }
+    }
+
+    public static async Task<byte[]> ReadFully(Stream input)
+    {
+        byte[] buffer = new byte[16 * 1024];
+        using (MemoryStream ms = new MemoryStream())
+        {
+            int read;
+            while ((read = await input.ReadAsync(buffer, 0, buffer.Length)) > 0)
+            {
+                ms.Write(buffer, 0, read);
+            }
+            return ms.ToArray();
+        }
+    }
+}
