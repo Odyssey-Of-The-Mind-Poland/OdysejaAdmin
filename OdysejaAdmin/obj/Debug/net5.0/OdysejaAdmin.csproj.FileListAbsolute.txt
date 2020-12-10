@@ -64,3 +64,15 @@ D:\projects\OdysejaAdmin\OdysejaAdmin\bin\Debug\net5.0\BlazorInputFile.dll
 D:\projects\OdysejaAdmin\OdysejaAdmin\bin\Debug\net5.0\ExcelDataReader.dll
 D:\projects\OdysejaAdmin\OdysejaAdmin\bin\Debug\net5.0\EPPlus.dll
 D:\projects\OdysejaAdmin\OdysejaAdmin\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll
+D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\RazorDeclaration\Pages\AgePage.razor.g.cs
+D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\Razor\Pages\AgePage.razor.g.cs
+D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\RazorDeclaration\Components\IdNameComponent.razor.g.cs
+D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\RazorDeclaration\Pages\IdNamePage.razor.g.cs
+D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\Razor\Components\IdNameComponent.razor.g.cs
+D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\Razor\Pages\IdNamePage.razor.g.cs
+D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\RazorDeclaration\Pages\ProblemPage.razor.g.cs
+D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\Razor\Pages\ProblemPage.razor.g.cs
+D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\RazorDeclaration\Pages\StagePage.razor.g.cs
+D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\Razor\Pages\StagePage.razor.g.cs
+D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\RazorDeclaration\Components\StageComponent.razor.g.cs
+D:\projects\OdysejaAdmin\OdysejaAdmin\obj\Debug\net5.0\Razor\Components\StageComponent.razor.g.cs

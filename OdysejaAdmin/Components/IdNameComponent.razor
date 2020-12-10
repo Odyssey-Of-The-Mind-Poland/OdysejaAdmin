@@ -1,0 +1,51 @@
+﻿@using OdysejaAdmin.Data
+@inject RestService RestService
+
+<tr>
+    @if (editMode)
+    {
+        <td>@IdNameModel.id</td>
+        <td>
+            <input @bind="IdNameModel.name"
+                    type="text"
+                    class="input is-rounded"
+                    size="50"/>
+        </td>  
+        <td>
+            <button class="button is-success"
+                    @onclick="Save">
+                Zapisz
+            </button>
+        </td>
+    }
+    else
+    {
+        <td>@IdNameModel.id</td>
+        <td>@IdNameModel.name</td>
+        <td>
+            <button class="button is-success"
+                    @onclick="() => editMode = true">
+                Edytuj
+            </button>
+        </td>
+    }
+</tr>
+
+
+@code
+{
+    private bool editMode;
+
+    [Parameter]
+    public IdNameModel IdNameModel { get; set; }
+    [Parameter]
+    public string EndPoint { get; set; }
+    
+    private void Save()
+    {
+        editMode = false;
+        List<IdNameModel> models = new List<IdNameModel>(){IdNameModel};
+        RestService.Put(EndPoint, models);
+    }
+}
+

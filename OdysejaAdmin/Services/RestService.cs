@@ -23,8 +23,6 @@ namespace OdysejaAdmin.Services
             using (var content = new StringContent(JsonConvert.SerializeObject(value), System.Text.Encoding.UTF8,
                 "application/json"))
             {
-                client.DefaultRequestHeaders.Authorization
-                    = new AuthenticationHeaderValue("JSESSIONID", _userStore.GetCookie());
                 HttpResponseMessage result = client.PostAsync($"{BASE_URL}{url}", content).Result;
                 return result;
             }
@@ -32,8 +30,6 @@ namespace OdysejaAdmin.Services
 
         public async Task<string> Get(string url)
         {
-            client.DefaultRequestHeaders.Authorization
-                = new AuthenticationHeaderValue("JSESSIONID", _userStore.GetCookie());
             HttpResponseMessage response = await client.GetAsync($"{BASE_URL}{url}");
             return await response.Content.ReadAsStringAsync();
         }
@@ -43,8 +39,6 @@ namespace OdysejaAdmin.Services
             using (var content = new StringContent(JsonConvert.SerializeObject(value), System.Text.Encoding.UTF8,
                 "application/json"))
             {
-                client.DefaultRequestHeaders.Authorization
-                    = new AuthenticationHeaderValue("JSESSIONID", _userStore.GetCookie());
                 HttpResponseMessage result = client.PutAsync($"{BASE_URL}{url}", content).Result;
                 return result;
             }
@@ -52,8 +46,6 @@ namespace OdysejaAdmin.Services
 
         public async Task<HttpResponseMessage> Delete(string url, string id)
         {
-            client.DefaultRequestHeaders.Authorization
-                = new AuthenticationHeaderValue("JSESSIONID", _userStore.GetCookie());
             HttpResponseMessage result = await client.DeleteAsync($"{BASE_URL}{url}/{id}");
             return result;
         }

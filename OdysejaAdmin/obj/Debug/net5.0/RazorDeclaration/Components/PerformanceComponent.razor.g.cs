@@ -139,7 +139,7 @@ using OdysejaAdmin.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 87 "D:\projects\OdysejaAdmin\OdysejaAdmin\Components\PerformanceComponent.razor"
+#line 82 "D:\projects\OdysejaAdmin\OdysejaAdmin\Components\PerformanceComponent.razor"
  
     private bool editMode;
 
@@ -154,12 +154,12 @@ using OdysejaAdmin.Data;
     private void Save()
     {
         editMode = false;
-        RestService.Put("/admin/timeTable", Performance);
+        RestService.Put("/timeTable", Performance);
     }
 
     private async void Del()
     {
-        await RestService.Delete("/admin/timeTable", Performance.id.ToString());
+        await RestService.Delete("/timeTable", Performance.id.ToString());
         OnDelete.InvokeAsync();
     }
 

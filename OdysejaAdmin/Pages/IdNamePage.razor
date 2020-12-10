@@ -1,0 +1,40 @@
+﻿@using OdysejaAdmin.Data
+@using System.Text.Json
+@inject RestService RestService
+
+<table class="table">
+    <thead>
+    <tr>
+        <th><abbr>Nr</abbr></th>
+        <th><abbr>Nazwa</abbr></th>
+        <th><abbr>Edycja</abbr></th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var model in idNameModels)
+        {
+            <IdNameComponent IdNameModel="@model"
+                             EndPoint="@PageName"/>
+        }
+    </tbody>
+</table>
+
+@code
+{
+    [Parameter]
+    public string PageName { get; set; }
+    
+    private List<IdNameModel> idNameModels = new List<IdNameModel>();
+    
+    protected async override Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await LoadData();
+    }
+    private async Task LoadData()
+    {
+        string response = await RestService.Get(PageName);
+        idNameModels = JsonSerializer.Deserialize<List<IdNameModel>>(response);
+        StateHasChanged();
+    }
+}

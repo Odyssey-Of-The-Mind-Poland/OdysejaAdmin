@@ -4,12 +4,7 @@
 @if (editMode)
 {
     <tr>
-        <td>
-            <input @bind="Performance.city"
-                    type="text"
-                    class="input is-rounded"
-                    size="50"/>
-        </td>
+        <td>@Performance.city</td>
         <td>
             <input @bind="Performance.team"
                     type="text"
@@ -98,12 +93,12 @@ else
     private void Save()
     {
         editMode = false;
-        RestService.Put("/admin/timeTable", Performance);
+        RestService.Put("/timeTable", Performance);
     }
 
     private async void Del()
     {
-        await RestService.Delete("/admin/timeTable", Performance.id.ToString());
+        await RestService.Delete("/timeTable", Performance.id.ToString());
         OnDelete.InvokeAsync();
     }
 }

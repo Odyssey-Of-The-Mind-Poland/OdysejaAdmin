@@ -132,7 +132,7 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 18 "D:\projects\OdysejaAdmin\OdysejaAdmin\Shared\NavMenu.razor"
+#line 33 "D:\projects\OdysejaAdmin\OdysejaAdmin\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

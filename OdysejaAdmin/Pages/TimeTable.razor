@@ -35,12 +35,12 @@
     protected override async void OnInitialized()
     {
         await base.OnInitializedAsync();
-        LoadData();
+        await LoadData();
     }
 
-    private async void LoadData()
+    private async Task LoadData()
     {
-        string response = await restService.Get("/admin/timeTable");
+        string response = await restService.Get("/timeTable");
         timeTable = JsonSerializer.Deserialize<List<Performance>>(response);
         StateHasChanged();
     }
