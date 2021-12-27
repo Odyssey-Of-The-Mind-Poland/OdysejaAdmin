@@ -13,112 +13,112 @@ namespace OdysejaAdmin.Shared
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 1 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 2 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 3 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 4 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 5 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 6 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 7 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 8 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 9 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using OdysejaAdmin;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 10 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using OdysejaAdmin.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 11 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using OdysejaAdmin.Pages;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 12 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using OdysejaAdmin.Pages.Login;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 13 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using OdysejaAdmin.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 14 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using OdysejaAdmin.Stores;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 15 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using OdysejaAdmin.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "D:\projects\OdysejaAdmin\OdysejaAdmin\_Imports.razor"
+#line 16 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/_Imports.razor"
 using BlazorInputFile;
 
 #line default
@@ -132,7 +132,7 @@ using BlazorInputFile;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 33 "D:\projects\OdysejaAdmin\OdysejaAdmin\Shared\NavMenu.razor"
+#line 33 "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/Shared/NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

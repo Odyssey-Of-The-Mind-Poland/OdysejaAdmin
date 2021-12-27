@@ -1,0 +1,96 @@
+@page "/sponsor"
+@using OdysejaAdmin.Data
+@using System.Text.Json
+@using System.IO
+@inject RestService RestService
+
+<div class="file has-name"
+     style="display: inline-block;">
+    <label class="file-label">
+        <BlazorInputFile.InputFile class="file-input"
+                                   OnChange="@ChooseFile"/>
+        <span class="file-cta">
+            <span class="file-icon">
+                <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+                Wybierz plik…
+            </span>
+        </span>
+        <span class="file-name">
+            @FileName
+        </span>
+    </label>
+</div>
+
+<input @bind="SponsorName"
+       type="text"
+       class="input is-rounded"
+       style="display: inline-block;"
+       size="10"/>
+
+<button class="button is-primary"
+        @onclick="SendSponsor"
+        style="display: inline-block;">
+    Dodaj sponsora
+</button>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            <abbr>Nazwa sponsora</abbr>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var s in _sponsors)
+    {
+        <SponsorComponent Sponsor="@s"/>
+    }
+    </tbody>
+</table>
+
+@code
+{
+    private List<Sponsor> _sponsors = new List<Sponsor>();
+    private string FileName { get; set; } = "Nie wybrano pliku";
+    private string SponsorName { get; set; } = "Sponsor";
+    IFileListEntry file;
+
+    private async Task ChooseFile(IFileListEntry[] files)
+    {
+        file = files.FirstOrDefault();
+        FileName = file.Name;
+    }
+
+    protected override async void OnInitialized()
+    {
+        var cities = await RestService.Get("/sponsor");
+        _sponsors = JsonSerializer.Deserialize<List<Sponsor>>(cities);
+        StateHasChanged();
+    }
+
+    private async void SendSponsor()
+    {
+        var form = new MultipartFormDataContent();
+        form.Add(new StringContent(FileName), "name");
+        var fileContent = await ReadFully(file.Data);
+        form.Add(new ByteArrayContent(fileContent), "image", file.Name);
+        await RestService.PostForm("/sponsor", form);
+    }
+    
+    public static async Task<byte[]> ReadFully(Stream input)
+    {
+        byte[] buffer = new byte[16 * 1024];
+        using (MemoryStream ms = new MemoryStream())
+        {
+            int read;
+            while ((read = await input.ReadAsync(buffer, 0, buffer.Length)) > 0)
+            {
+                ms.Write(buffer, 0, read);
+            }
+            return ms.ToArray();
+        }
+    }
+}

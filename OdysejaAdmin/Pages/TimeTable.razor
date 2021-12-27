@@ -40,7 +40,7 @@
 
     private async Task LoadData()
     {
-        string response = await restService.Get("/timeTable");
+        string response = await RestService.Get("/timeTable");
         timeTable = JsonSerializer.Deserialize<List<Performance>>(response);
         StateHasChanged();
     }
