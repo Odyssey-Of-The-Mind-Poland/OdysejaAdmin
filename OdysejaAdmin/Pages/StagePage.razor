@@ -33,16 +33,16 @@
 
     protected override async void OnInitialized()
     {
-        string cities = await RestService.Get("/city");
+        var cities = await RestService.Get("/city");
         _cities = JsonSerializer.Deserialize<List<IdNameModel>>(cities);
-        string stages = await RestService.Get("/stage/0");
+        var stages = await RestService.Get("/stage/0");
         _stages = JsonSerializer.Deserialize<List<StageModel>>(stages);
         StateHasChanged();
     }
 
     async void DropDownChanged(ChangeEventArgs e)
     {
-        string stages = await RestService.Get($"/stage/{e.Value}");
+        var stages = await RestService.Get($"/stage/{e.Value}");
         _stages = JsonSerializer.Deserialize<List<StageModel>>(stages);
         StateHasChanged();
     }

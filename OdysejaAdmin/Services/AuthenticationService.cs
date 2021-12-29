@@ -23,7 +23,7 @@ namespace OdysejaAdmin.Services
         public async Task<bool> Authenticate(string userName, string password)
         {
             UserCredentials userCredentials = new UserCredentials(userName, password);
-            HttpResponseMessage  response = await _restService.Post("/login", userCredentials);
+            HttpResponseMessage  response = await RestService.Post("/login", userCredentials);
             bool success = response.StatusCode == HttpStatusCode.OK;
             if (!success) return success;
             IEnumerable<string> cookies = response.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value;
@@ -33,7 +33,7 @@ namespace OdysejaAdmin.Services
 
         public async void Logout()
         {
-            await _restService.Post("/logout", null);
+            await RestService.Post("/logout", null);
             _userStore.SetAuth(false);
         }
     }

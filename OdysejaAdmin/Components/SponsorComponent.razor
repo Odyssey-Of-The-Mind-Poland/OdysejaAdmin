@@ -1,0 +1,27 @@
+﻿@using OdysejaAdmin.Data
+
+
+<tr>
+    <td>@Sponsor.name</td>
+    <td>
+        <button class="button is-danger"
+                @onclick="Del">
+            Del
+        </button>
+    </td>
+</tr>
+
+@code
+{
+
+    [Parameter]
+    public Sponsor Sponsor { get; set; }
+    [Parameter]
+    public EventCallback OnDelete { get; set; }
+    
+    private async void Del()
+    {
+        await RestService.Delete("/sponsor", Sponsor.id.ToString());
+        await OnDelete.InvokeAsync();
+    }
+}
