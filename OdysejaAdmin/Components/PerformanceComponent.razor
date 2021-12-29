@@ -99,6 +99,6 @@ else
     private async void Del()
     {
         await RestService.Delete("/timeTable", Performance.id.ToString());
-        OnDelete.InvokeAsync();
+        await OnDelete.InvokeAsync();
     }
 }
