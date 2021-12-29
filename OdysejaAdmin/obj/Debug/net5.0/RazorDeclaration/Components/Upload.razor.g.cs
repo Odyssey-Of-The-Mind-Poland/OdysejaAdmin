@@ -145,6 +145,20 @@ using System.IO;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "D:\projects\OdysejaAdmin\OdysejaAdmin\Components\Upload.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\projects\OdysejaAdmin\OdysejaAdmin\Components\Upload.razor"
+using OdysejaAdmin.Data;
+
+#line default
+#line hidden
+#nullable disable
     public partial class Upload : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -153,10 +167,92 @@ using System.IO;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 31 "D:\projects\OdysejaAdmin\OdysejaAdmin\Components\Upload.razor"
+#line 40 "D:\projects\OdysejaAdmin\OdysejaAdmin\Components\Upload.razor"
  
+    [Parameter]
+    public EventCallback AfterLoad { get; set; }
+
+    private int _selectedCity = 0;
+    private List<IdNameModel> cities = new List<IdNameModel>();
     protected string name { get; set; } = "Nie wybrano pliku";
     IFileListEntry file;
+    ExcelWorksheet sheet;
+
+    protected override async void OnInitialized()
+    {
+        string cities = await RestService.Get("/city");
+        this.cities = JsonSerializer.Deserialize<List<IdNameModel>>(cities);
+        StateHasChanged();
+    }
+
+    protected async Task SendHarmonogram()
+    {
+        try
+        {
+            await BytesToExcel();
+            List<Performance> performances = new List<Performance>();
+            List<StageModel> stages = new List<StageModel>();
+            List<Coordinate> corners = FindCorners();
+            foreach (var corner in corners)
+            {
+                ReadStage(performances, corner, stages);
+            }
+            await RestService.Post("/timeTable", performances);
+            await RestService.Put("/stage", stages);
+            AfterLoad.InvokeAsync();
+        }
+        catch(Exception e)
+        {
+            Console.Write($"Messega: {e.Message} \n StackTrace {e.StackTrace}");
+        }
+    }
+
+    private void ReadStage(List<Performance> perf, Coordinate corner, List<StageModel> stages)
+    {
+        int x = corner.X;
+        int y = corner.Y;
+        string[] stage = GetCellValue(x + 1, y).Split("-");
+        int stageNumber = Int32.Parse(stage[0].Split(" ")[1]);
+        stages.Add(new StageModel(0, stage[stage.Length - 1], _selectedCity, stageNumber));
+        y += 2;
+        int problem = 0;
+        int age = 0;
+        do
+        {
+            string val = GetCellValue(x, y);
+            if (val == null)
+            {
+                val = GetCellValue(x + 1, y);
+                string[] splited = val.Split(" ");
+                problem = 0;
+                try
+                {
+                    problem = Int32.Parse(splited[1].ToCharArray()[0].ToString());
+                }
+                catch (Exception e)
+                {
+                }
+                age = Roman.RomanToInteger(splited[splited.Length - 1]);
+            }
+            else
+            {
+                string cityName = cities.Find(c => c.id == _selectedCity).name;
+                Performance performance = new Performance(0,
+                    cityName, GetCellValue(x + 1, y), problem, age, stageNumber,
+                    GetCellValue(x, y).Substring(GetCellValue(x, y).Length >= 11 ? 11 : 0, 
+                        GetCellValue(x, y).Length >= 5 ? 5 : GetCellValue(x, y).Length), 
+                    GetCellValue(x + 2, y).Substring(GetCellValue(x+2, y).Length >= 11 ? 11 : 0, 
+                        GetCellValue(x+2, y).Length >= 5 ? 5 : GetCellValue(x+2, y).Length));
+                perf.Add(performance);
+            }
+            y++;
+        } while (GetCellValue(x, y) != null || GetCellValue(x + 1, y) != null);
+    }
+
+    private string GetCellValue(int x, int y)
+    {
+        return sheet.Cells[y, x]?.Value?.ToString();
+    }
 
     protected async Task ChooseFile(IFileListEntry[] files)
     {
@@ -164,31 +260,24 @@ using System.IO;
         name = file.Name;
     }
 
-    protected async Task SendHarmonogram()
+    public List<Coordinate> FindCorners()
     {
-        byte[] bin = await ReadFully(file.Data);
-
-        using (MemoryStream ms = new MemoryStream(bin))
-        using (ExcelPackage package = new ExcelPackage(ms))
+        List<Coordinate> corners = new List<Coordinate>();
+        for (int y = sheet.Dimension.Start.Row; y <= sheet.Dimension.End.Row; y++)
         {
-            ExcelWorksheet sheet = package.Workbook.Worksheets.FirstOrDefault();
-            
-            for (int i = sheet.Dimension.Start.Row; i <= sheet.Dimension.End.Row; i++)
+            for (int x = sheet.Dimension.Start.Column; x <= sheet.Dimension.End.Column; x++)
             {
-                for (int j = sheet.Dimension.Start.Column; j <= sheet.Dimension.End.Column; j++)
+                try
                 {
-                    try
-                    {
-                        string currentCellValue = sheet.Cells[i, j]?.Value?.ToString();
-                        Console.WriteLine(currentCellValue);
-                    }
-                    catch(Exception e)
-                    {
-                        
-                    }
+                    string currentCellValue = sheet.Cells[y, x]?.Value?.ToString();
+                    if (currentCellValue == "Godzina występu") corners.Add(new Coordinate(x, y));
+                }
+                catch (Exception e)
+                {
                 }
             }
         }
+        return corners;
     }
 
     public static async Task<byte[]> ReadFully(Stream input)
@@ -205,9 +294,18 @@ using System.IO;
         }
     }
 
+    public async Task BytesToExcel()
+    {
+        byte[] bin = await ReadFully(file.Data);
+        MemoryStream ms = new MemoryStream(bin);
+        ExcelPackage package = new ExcelPackage(ms);
+        sheet = package.Workbook.Worksheets.FirstOrDefault();
+    }
+
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private RestService RestService { get; set; }
     }
 }
 #pragma warning restore 1591

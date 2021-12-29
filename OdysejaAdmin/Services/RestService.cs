@@ -8,7 +8,7 @@ namespace OdysejaAdmin.Services
 {
     public class RestService
     {
-        private const string BASE_URL = "http://localhost:8080";
+        private const string BASE_URL = "http://localhost:8081";
         private static readonly HttpClient client = new HttpClient();
 
         private UserStore _userStore;

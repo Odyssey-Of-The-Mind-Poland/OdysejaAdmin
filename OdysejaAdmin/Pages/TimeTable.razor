@@ -4,7 +4,7 @@
 @using System.Text.Json
 @inject RestService restService
 
-<Upload/>
+<Upload AfterLoad="@LoadData"/>
 <table class="table">
     <thead>
     <tr>
