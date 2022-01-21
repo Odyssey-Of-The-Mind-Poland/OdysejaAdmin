@@ -12,7 +12,162 @@
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="/home/grzybek/.nuget/packages/" />
   </ItemGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/libman.json" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/libman.json')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>libman.json</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/css/easymde.min.css" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/css/easymde.min.css')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/css/easymde.min.css</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/CHANGELOG.md" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/CHANGELOG.md')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/CHANGELOG.md</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/LICENSE" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/LICENSE')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/LICENSE</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/README.md" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/README.md')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/README.md</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/dist/easymde.min.css" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/dist/easymde.min.css')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/dist/easymde.min.css</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/dist/easymde.min.js" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/dist/easymde.min.js')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/dist/easymde.min.js</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/package.json" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/package.json')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/package.json</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/src/css/easymde.css" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/src/css/easymde.css')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/src/css/easymde.css</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/src/css/easymde.min.css" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/src/css/easymde.min.css')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/src/css/easymde.min.css</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/src/js/codemirror/tablist.js" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/src/js/codemirror/tablist.js')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/src/js/codemirror/tablist.js</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/src/js/codemirror/tablist.min.js" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/src/js/codemirror/tablist.min.js')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/src/js/codemirror/tablist.min.js</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/src/js/easymde.js" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/src/js/easymde.js')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/src/js/easymde.js</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/src/js/easymde.min.js" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/src/js/easymde.min.js')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/src/js/easymde.min.js</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/types/easymde.d.ts" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/easymde/types/easymde.d.ts')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/easymde/types/easymde.d.ts</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/js/easymde.min.js" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/js/easymde.min.js')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/js/easymde.min.js</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/js/markdownEditor.js" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/js/markdownEditor.js')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/js/markdownEditor.js</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/lib/simplemde/simplemde.min.css" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/lib/simplemde/simplemde.min.css')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/lib/simplemde/simplemde.min.css</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/lib/simplemde/simplemde.min.js" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/contentFiles/any/net6.0/wwwroot/lib/simplemde/simplemde.min.js')">
+      <NuGetPackageId>PSC.Blazor.Components.MarkdownEditor</NuGetPackageId>
+      <NuGetPackageVersion>2.0.3</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>wwwroot/lib/simplemde/simplemde.min.js</Link>
+    </Content>
+  </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/buildTransitive/PSC.Blazor.Components.MarkdownEditor.props" Condition="Exists('$(NuGetPackageRoot)psc.blazor.components.markdowneditor/2.0.3/buildTransitive/PSC.Blazor.Components.MarkdownEditor.props')" />
     <Import Project="$(NuGetPackageRoot)blazorise/0.9.2.1/buildTransitive/Blazorise.props" Condition="Exists('$(NuGetPackageRoot)blazorise/0.9.2.1/buildTransitive/Blazorise.props')" />
     <Import Project="$(NuGetPackageRoot)blazorinputfile/0.2.0/buildTransitive/BlazorInputFile.props" Condition="Exists('$(NuGetPackageRoot)blazorinputfile/0.2.0/buildTransitive/BlazorInputFile.props')" />
   </ImportGroup>
