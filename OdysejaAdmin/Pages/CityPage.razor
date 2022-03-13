@@ -1,4 +1,30 @@
 ﻿@page "/city"
+@using OdysejaAdmin.Data
+
+<input @bind="_cityName"
+       type="text"
+       class="input is-rounded"
+       style="display: inline-block;"
+       size="10px"/>
+
+<button class="button is-primary"
+        @onclick="AddCity"
+        style="display: inline-block;">
+    Dodaj info
+</button>
 
 <IdNamePage PageName="/city"/>
+
+@code
+{
+
+    private string _cityName;
+
+    private async void AddCity()
+    {
+        var city = new IdNameModel(0, _cityName);
+        await RestService.Post("/city", city);
+        StateHasChanged();
+    }
+}
 
