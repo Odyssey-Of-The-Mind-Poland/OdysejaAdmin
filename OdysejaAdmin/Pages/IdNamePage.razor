@@ -14,7 +14,8 @@
         @foreach (var model in idNameModels)
         {
             <IdNameComponent IdNameModel="@model"
-                             EndPoint="@PageName"/>
+                             EndPoint="@PageName"
+                             OnUpdate="@LoadData"/>
         }
     </tbody>
 </table>

@@ -28,6 +28,12 @@
                 Edytuj
             </button>
         </td>
+        <td>
+            <button class="button alert-danger"
+                    @onclick="Delete">
+                Usuń
+            </button>
+        </td>
     }
 </tr>
 
@@ -40,12 +46,19 @@
     public IdNameModel IdNameModel { get; set; }
     [Parameter]
     public string EndPoint { get; set; }
+    [Parameter]
+    public EventCallback OnUpdate { get; set; }
     
     private void Save()
     {
         editMode = false;
         List<IdNameModel> models = new List<IdNameModel>(){IdNameModel};
         RestService.Put(EndPoint, models);
+    }
+    
+    private async void Delete()
+    {
+        await RestService.Delete(EndPoint, IdNameModel.id.ToString());
     }
 }
 

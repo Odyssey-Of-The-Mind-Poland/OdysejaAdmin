@@ -1,34 +1,108 @@
 ﻿@page "/info"
+@using OdysejaAdmin.Data
+@using System.Text.Json
+@using System.Collections
 
-<div class="col-md-12">
-    <MarkdownEditor Value="@markdownValue"
-                    ValueChanged="@OnMarkdownValueChanged"
-                    ValueHTMLChanged="@OnMarkdownValueHTMLChanged" />
- 
-    <hr />
- 
-    <h3>Result</h3>
-    @((MarkupString)markdownHtml)
-</div>
- 
+
+<select @bind="_selectedCity"
+        class="select">
+    @foreach (var template in cities)
+    {
+        <option value=@template.id>@template.name</option>
+    }
+</select>
+
+<input @bind="_newInfoName"
+       type="text"
+       class="input is-rounded"
+       style="display: inline-block;"
+       size="10px"/>
+
+<button class="button is-primary"
+        @onclick="AddInfo"
+        style="display: inline-block;">
+    Dodaj info
+</button>
+
+<br/>
+
+<select @bind="SelectedInfo" class="select">
+    @foreach (var info in infos)
+    {
+        <option value=@info.id>@info.infoName</option>
+    }
+</select>
+
+<button class="button is-primary"
+        @onclick="SaveInfo"
+        style="display: inline-block;">
+    Zapisz info
+</button>
+
+<br/>
+
+<input @bind="_infoText"
+       type="text"
+       class="input is-rounded"
+       size="50"/>
+
 @code {
-    string markdownValue = "#Markdown Editor\nThis is a test";
-    string markdownHtml;
- 
-    protected override void OnInitialized()
+    private string _newInfoName = "";
+
+    private int _selectedInfo = 0;
+
+    private int SelectedInfo
     {
-        markdownHtml = Markdig.Markdown.ToHtml(markdownValue ?? string.Empty);
+        get { return _selectedInfo; }
+        set
+        {
+            _selectedInfo = value;
+            _infoText = infos.Find(i => i.id == _selectedInfo).infoText;
+            StateHasChanged();
+        }
+    }
+
+    private String _infoText = "";
+
+    private List<Info> infos = new List<Info>();
+
+    private int _selectedCity = 0;
+    private List<IdNameModel> cities = new List<IdNameModel>();
+
+    protected async override void OnInitialized()
+    {
         base.OnInitialized();
+        await LoadCities();
+        await LoadData();
     }
- 
-    Task OnMarkdownValueChanged(string value)
+
+    private async Task LoadData()
     {
-        return Task.CompletedTask;
+        string response = await RestService.Get("/info/" + _selectedCity);
+        infos = JsonSerializer.Deserialize<List<Info>>(response);
+        _selectedInfo = infos[0].id;
+        StateHasChanged();
     }
- 
-    Task OnMarkdownValueHTMLChanged(string value)
+
+    private async Task LoadCities()
     {
-        markdownHtml = value;
-        return Task.CompletedTask;
+        string cities = await RestService.Get("/city");
+        this.cities = JsonSerializer.Deserialize<List<IdNameModel>>(cities);
+        StateHasChanged();
     }
+
+    protected async Task AddInfo()
+    {
+        var info = new Info(0, _newInfoName, "", _selectedCity);
+        await RestService.Post("/info", info);
+        await LoadData();
+    }
+
+    private async Task SaveInfo()
+    {
+        var info = new Info(_selectedInfo, _newInfoName, _infoText, _selectedCity);
+        await RestService.Put("/info", info);
+        await LoadData();
+    }
+
 }
