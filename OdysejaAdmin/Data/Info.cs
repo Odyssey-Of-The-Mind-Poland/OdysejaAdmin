@@ -9,13 +9,16 @@ namespace OdysejaAdmin.Data
      public string infoText { get; set; }
      
      public int city { get; set; }
+     
+     public int category { get; set; }
 
-     public Info(int id, string infoName, string infoText, int city)
+     public Info(int id, string infoName, string infoText, int city, int category)
      {
          this.id = id;
          this.infoName = infoName;
          this.infoText = infoText;
          this.city = city;
+         this.category = category;
      }
  }   
 }

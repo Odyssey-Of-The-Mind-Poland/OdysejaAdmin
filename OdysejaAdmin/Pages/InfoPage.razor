@@ -12,11 +12,24 @@
     }
 </select>
 
+<select @bind="_selectedCategory"
+        class="select">
+    @foreach (var template in categories)
+    {
+        <option value=@template.id>@template.name</option>
+    }
+</select>
+
 <input @bind="_newInfoName"
        type="text"
        class="input is-rounded"
        style="display: inline-block;"
        size="10px"/>
+
+<input @bind="_infoText"
+       type="text"
+       class="input is-rounded"
+       size="50"/>
 
 <button class="button is-primary"
         @onclick="AddInfo"
@@ -26,25 +39,14 @@
 
 <br/>
 
-<select @bind="SelectedInfo" class="select">
-    @foreach (var info in infos)
-    {
-        <option value=@info.id>@info.infoName</option>
-    }
-</select>
-
-<button class="button is-primary"
-        @onclick="SaveInfo"
-        style="display: inline-block;">
-    Zapisz info
-</button>
+@* <select @bind="SelectedInfo" class="select"> *@
+@*     @foreach (var info in infos) *@
+@*     { *@
+@*         <option value=@info.id>@info.infoName</option> *@
+@*     } *@
+@* </select> *@
 
 <br/>
-
-<input @bind="_infoText"
-       type="text"
-       class="input is-rounded"
-       size="50"/>
 
 @code {
     private string _newInfoName = "";
@@ -68,12 +70,16 @@
 
     private int _selectedCity = 0;
     private List<IdNameModel> cities = new List<IdNameModel>();
+    
+    private List<IdNameModel> categories = new List<IdNameModel>();
+    private int _selectedCategory = 0;
 
     protected async override void OnInitialized()
     {
         base.OnInitialized();
         await LoadCities();
         await LoadData();
+        await LoadCategories();
     }
 
     private async Task LoadData()
@@ -81,6 +87,14 @@
         string response = await RestService.Get("/info/" + _selectedCity);
         infos = JsonSerializer.Deserialize<List<Info>>(response);
         _selectedInfo = infos[0].id;
+        StateHasChanged();
+    }
+    
+    private async Task LoadCategories()
+    {
+        string response = await RestService.Get("/info/category");
+        categories = JsonSerializer.Deserialize<List<IdNameModel>>(response);
+        _selectedCategory = categories[0].id;
         StateHasChanged();
     }
 
@@ -93,15 +107,8 @@
 
     protected async Task AddInfo()
     {
-        var info = new Info(0, _newInfoName, "", _selectedCity);
+        var info = new Info(0, _newInfoName, _infoText, _selectedCity, _selectedCategory);
         await RestService.Post("/info", info);
-        await LoadData();
-    }
-
-    private async Task SaveInfo()
-    {
-        var info = new Info(_selectedInfo, _newInfoName, _infoText, _selectedCity);
-        await RestService.Put("/info", info);
         await LoadData();
     }
 
