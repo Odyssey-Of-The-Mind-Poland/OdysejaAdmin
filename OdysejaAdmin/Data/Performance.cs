@@ -10,8 +10,10 @@
         public int stage { get; set; }
         public string performance { get; set; }
         public string spontan { get; set; }
+        
+        public int part { get; set; }
 
-        public Performance(int id, string city, string team, int problem, int age, int stage, string performance, string spontan)
+        public Performance(int id, string city, string team, int problem, int age, int stage, string performance, string spontan, int part)
         {
             this.id = id;
             this.city = city;
@@ -21,6 +23,7 @@
             this.stage = stage;
             this.performance = performance;
             this.spontan = spontan;
+            this.part = part;
         }
     }
 }

@@ -70,7 +70,7 @@
             await RestService.Put("/stage", stages);
             AfterLoad.InvokeAsync();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             Console.Write($"Messega: {e.Message} \n StackTrace {e.StackTrace}");
         }
@@ -83,13 +83,16 @@
         string[] stage = GetCellValue(x + 1, y).Split("-");
         int stageNumber = Int32.Parse(stage[0].Split(" ")[1]);
         stages.Add(new StageModel(0, stage[stage.Length - 1], _selectedCity, stageNumber));
+        string perfDay = DetermineDay(GetCellValue(x, y + 1));
+        string spontDay = DetermineDay(GetCellValue(x + 2, y + 1));
         y += 2;
         int problem = 0;
         int age = 0;
+        int part = 0;
         do
         {
             string val = GetCellValue(x, y);
-            if (val == null)
+            if (String.IsNullOrEmpty(val))
             {
                 val = GetCellValue(x + 1, y);
                 string[] splited = val.Split(" ");
@@ -100,18 +103,29 @@
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine("Couldn't parse problem for: " + val + " Setting as junior problem");
                 }
-                age = Roman.RomanToInteger(splited[splited.Length - 1]);
+                var last = splited[splited.Length - 1];
+                if (last.Length > 1 && last[1] == ')')
+                {
+                    age = Roman.RomanToInteger(splited[splited.Length - 3]);
+                    part = Int32.Parse(last[0].ToString());
+                }
+                else
+                {
+                    age = Roman.RomanToInteger(last);
+                    part = 0;
+                }
             }
             else
             {
                 string cityName = cities.Find(c => c.id == _selectedCity).name;
                 Performance performance = new Performance(0,
                     cityName, GetCellValue(x + 1, y), problem, age, stageNumber,
-                    GetCellValue(x, y).Substring(GetCellValue(x, y).Length >= 11 ? 11 : 0, 
-                        GetCellValue(x, y).Length >= 5 ? 5 : GetCellValue(x, y).Length), 
-                    GetCellValue(x + 2, y).Substring(GetCellValue(x+2, y).Length >= 11 ? 11 : 0, 
-                        GetCellValue(x+2, y).Length >= 5 ? 5 : GetCellValue(x+2, y).Length));
+                    perfDay + " " + GetCellValue(x, y).Substring(GetCellValue(x, y).Length >= 11 ? 11 : 0,
+                        GetCellValue(x, y).Length >= 5 ? 5 : GetCellValue(x, y).Length),
+                    spontDay + " " + GetCellValue(x + 2, y).Substring(GetCellValue(x + 2, y).Length >= 11 ? 11 : 0,
+                        GetCellValue(x + 2, y).Length >= 5 ? 5 : GetCellValue(x + 2, y).Length), part);
                 perf.Add(performance);
             }
             y++;
@@ -149,7 +163,7 @@
         return corners;
     }
 
-    public static async Task<byte[]> ReadFully(Stream input)
+    private static async Task<byte[]> ReadFully(Stream input)
     {
         byte[] buffer = new byte[16 * 1024];
         using (MemoryStream ms = new MemoryStream())
@@ -163,11 +177,16 @@
         }
     }
 
-    public async Task BytesToExcel()
+    private async Task BytesToExcel()
     {
         byte[] bin = await ReadFully(file.Data);
         MemoryStream ms = new MemoryStream(bin);
         ExcelPackage package = new ExcelPackage(ms);
         sheet = package.Workbook.Worksheets.FirstOrDefault();
+    }
+
+    private String DetermineDay(String day)
+    {
+        return day.Contains("sobotę") ? "Sobota" : "Niedziela";
     }
 }
