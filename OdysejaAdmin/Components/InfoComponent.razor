@@ -1,0 +1,35 @@
+﻿@using OdysejaAdmin.Data
+@inject RestService RestService
+
+<tr>
+    <td>@Info.id</td>
+    <td>@Info.infoName</td>
+    <td>@Info.infoText</td>
+    <td>
+        <button class="button alert-danger"
+                @onclick="Delete">
+            Usuń
+        </button>
+    </td>
+</tr>
+
+
+@code
+{
+    private bool editMode;
+
+    [Parameter]
+    public Info Info { get; set; }
+
+    [Parameter]
+    public string EndPoint { get; set; }
+
+    [Parameter]
+    public EventCallback OnUpdate { get; set; }
+
+    private async void Delete()
+    {
+        await RestService.Delete(EndPoint, Info.id.ToString());
+        await OnUpdate.InvokeAsync();
+    }
+}

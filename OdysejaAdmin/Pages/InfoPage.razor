@@ -39,12 +39,33 @@
 
 <br/>
 
-@* <select @bind="SelectedInfo" class="select"> *@
-@*     @foreach (var info in infos) *@
-@*     { *@
-@*         <option value=@info.id>@info.infoName</option> *@
-@*     } *@
-@* </select> *@
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            <abbr>Nr</abbr>
+        </th>
+        <th>
+            <abbr>Nazwa</abbr>
+        </th>
+        <th>
+            <abbr>text</abbr>
+        </th>
+        <th>
+            <abbr>usuń</abbr>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var info in infos)
+    {
+        <InfoComponent Info="@info"
+                       EndPoint="/info"
+                       OnUpdate="@LoadData"/>
+    }
+    </tbody>
+</table>
+
 
 <br/>
 
@@ -70,7 +91,7 @@
 
     private int _selectedCity = 0;
     private List<IdNameModel> cities = new List<IdNameModel>();
-    
+
     private List<IdNameModel> categories = new List<IdNameModel>();
     private int _selectedCategory = 0;
 
@@ -89,7 +110,7 @@
         _selectedInfo = infos[0].id;
         StateHasChanged();
     }
-    
+
     private async Task LoadCategories()
     {
         string response = await RestService.Get("/info/category");
