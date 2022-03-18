@@ -122,10 +122,10 @@
                 string cityName = cities.Find(c => c.id == _selectedCity).name;
                 Performance performance = new Performance(0,
                     cityName, GetCellValue(x + 1, y), problem, age, stageNumber,
-                    perfDay + " " + GetCellValue(x, y).Substring(GetCellValue(x, y).Length >= 11 ? 11 : 0,
+                    GetCellValue(x, y).Substring(GetCellValue(x, y).Length >= 11 ? 11 : 0,
                         GetCellValue(x, y).Length >= 5 ? 5 : GetCellValue(x, y).Length),
-                    spontDay + " " + GetCellValue(x + 2, y).Substring(GetCellValue(x + 2, y).Length >= 11 ? 11 : 0,
-                        GetCellValue(x + 2, y).Length >= 5 ? 5 : GetCellValue(x + 2, y).Length), part);
+                    GetCellValue(x + 2, y).Substring(GetCellValue(x + 2, y).Length >= 11 ? 11 : 0,
+                        GetCellValue(x + 2, y).Length >= 5 ? 5 : GetCellValue(x + 2, y).Length), part, perfDay, spontDay);
                 perf.Add(performance);
             }
             y++;
