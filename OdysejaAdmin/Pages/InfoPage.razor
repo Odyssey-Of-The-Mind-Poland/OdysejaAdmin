@@ -26,10 +26,7 @@
        style="display: inline-block;"
        size="10px"/>
 
-<input @bind="_infoText"
-       type="text"
-       class="input is-rounded"
-       size="50"/>
+<textarea class="textarea" placeholder="e.g. Hello world" @bind="_infoText"></textarea>
 
 <button class="button is-primary"
         @onclick="AddInfo"
