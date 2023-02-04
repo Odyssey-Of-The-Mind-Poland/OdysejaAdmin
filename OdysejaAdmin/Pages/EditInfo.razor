@@ -1,0 +1,55 @@
+@page "/info/{Id:int}"
+
+@using System.Text.Json
+@using Microsoft.AspNetCore.Components
+@using OdysejaAdmin.Data
+@inject NavigationManager _navManager
+
+@if (_info != null)
+{
+    <input @bind="_info.sortNumber"
+           type="number"
+           class="input is-rounded"
+           placeholder="Numer informacji"
+           style="display: inline-block;"
+           size="10px"/>
+
+    <input @bind="_info.infoName"
+           type="text"
+           class="input is-rounded"
+           placeholder="Nazwa informacji"
+           style="display: inline-block;"
+           size="10px"/>
+
+    <RadzenHtmlEditor @bind-Value=@_info.infoText style="height: 500px; margin-bottom: 1rem;"/>
+
+    <button class="button is-primary"
+            @onclick="Save"
+            style="display: inline-block;">
+        Zapisz
+    </button>   
+}
+
+@code
+{
+    [Parameter]
+    public int Id { get; set; }
+
+    private Info _info;
+    
+    protected async override void OnInitialized()
+    {
+        base.OnInitialized();
+        string response = await RestService.Get("/info/id/" + Id);
+        _info = JsonSerializer.Deserialize<Info>(response);
+        StateHasChanged();
+    }
+
+    private async void Save()
+    {
+        await RestService.Delete("/info", _info.id.ToString());
+        var info = new Info(0, _info.infoName, _info.infoText, _info.city, _info.category, _info.category, "");
+        await RestService.Post("/info", info);
+        _navManager.NavigateTo("/info");
+    }
+}

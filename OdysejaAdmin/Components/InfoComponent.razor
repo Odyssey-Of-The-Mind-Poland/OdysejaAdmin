@@ -1,14 +1,21 @@
 ﻿@using OdysejaAdmin.Data
 @inject RestService RestService
+@inject NavigationManager _navManager
 
 <tr>
-    <td>@Info.id</td>
+    <td>@Info.sortNumber</td>
     <td>@Info.infoName</td>
-    <td>@Info.infoText</td>
+    <td>@Info.categoryName</td>
     <td>
         <button class="button alert-danger"
                 @onclick="Delete">
             Usuń
+        </button>
+    </td>
+    <td>
+        <button class="button alert-danger"
+                @onclick="Edit">
+            Edytuj
         </button>
     </td>
 </tr>
@@ -31,5 +38,10 @@
     {
         await RestService.Delete(EndPoint, Info.id.ToString());
         await OnUpdate.InvokeAsync();
+    }
+    
+    private async void Edit()
+    {
+        _navManager.NavigateTo("/info/" + Info.id);
     }
 }

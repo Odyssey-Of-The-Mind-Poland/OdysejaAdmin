@@ -1,7 +1,6 @@
 ﻿@page "/info"
 @using OdysejaAdmin.Data
 @using System.Text.Json
-@using System.Collections
 
 
 <select @bind="_selectedCity"
@@ -20,13 +19,21 @@
     }
 </select>
 
-<input @bind="_newInfoName"
-       type="text"
+<input @bind="_sortNumber"
+       type="number"
        class="input is-rounded"
+       placeholder="Numer informacji"
        style="display: inline-block;"
        size="10px"/>
 
-<RadzenHtmlEditor @bind-Value=@_infoText style="height: 500px; margin-bottom: 1rem;" />
+<input @bind="_newInfoName"
+       type="text"
+       class="input is-rounded"
+       placeholder="Nazwa informacji"
+       style="display: inline-block;"
+       size="10px"/>
+
+<RadzenHtmlEditor @bind-Value=@_infoText style="height: 500px; margin-bottom: 1rem;"/>
 
 <button class="button is-primary"
         @onclick="AddInfo"
@@ -46,10 +53,13 @@
             <abbr>Nazwa</abbr>
         </th>
         <th>
-            <abbr>text</abbr>
+            <abbr>kategoria</abbr>
         </th>
         <th>
             <abbr>usuń</abbr>
+        </th>
+        <th>
+            <abbr>edytuj</abbr>
         </th>
     </tr>
     </thead>
@@ -68,6 +78,8 @@
 
 @code {
     private string _newInfoName = "";
+
+    private int _sortNumber = 0;
 
     private int _selectedInfo = 0;
 
@@ -125,7 +137,7 @@
 
     protected async Task AddInfo()
     {
-        var info = new Info(0, _newInfoName, _infoText, _selectedCity, _selectedCategory);
+        var info = new Info(0, _newInfoName, _infoText, _selectedCity, _selectedCategory, _sortNumber, "");
         await RestService.Post("/info", info);
         await LoadData();
     }

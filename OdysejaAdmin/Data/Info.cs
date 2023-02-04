@@ -11,14 +11,19 @@ namespace OdysejaAdmin.Data
      public int city { get; set; }
      
      public int category { get; set; }
+     
+     public int sortNumber { get; set; }
+     public string categoryName { get; set; }
 
-     public Info(int id, string infoName, string infoText, int city, int category)
+     public Info(int id, string infoName, string infoText, int city, int category, int sortNumber, string categoryName)
      {
          this.id = id;
          this.infoName = infoName;
          this.infoText = infoText;
          this.city = city;
          this.category = category;
+         this.sortNumber = sortNumber;
+         this.categoryName = categoryName;
      }
  }   
 }
