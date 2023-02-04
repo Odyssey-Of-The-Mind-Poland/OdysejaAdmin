@@ -32,9 +32,9 @@ namespace OdysejaAdmin
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<AuthenticationService>();
-            services.AddSingleton<RestService>();
-            services.AddSingleton<UserStore>();
+            services.AddScoped<AuthenticationService>();
+            services.AddScoped<RestService>();
+            services.AddScoped<UserStore>();
             services.AddDistributedMemoryCache();
             services.AddScoped<DialogService>();
             services.AddScoped<NotificationService>();
