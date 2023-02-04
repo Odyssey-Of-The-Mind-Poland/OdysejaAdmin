@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4Q8CDuKzVMThlM/DVGyp46KGK3ed98qbXQNqq1mbWB+bFS68m0P7bJe0C7PlQ1ulnhWAuUh07gIxZj5W9MlPYw==",
+  "dgSpecHash": "3UGJ0AjHeEkdbJilvZDF4esd7xtjNGlqKL8osv8gr4gpSKbRytrik7/BoxoqB+s/OezY13/dPQ+r6EmYTiyF+Q==",
   "success": true,
   "projectFilePath": "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/OdysejaAdmin.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "/home/grzybek/.nuget/packages/blazorise/0.9.2.1/blazorise.0.9.2.1.nupkg.sha512",
     "/home/grzybek/.nuget/packages/epplus/5.4.2/epplus.5.4.2.nupkg.sha512",
     "/home/grzybek/.nuget/packages/exceldatareader/3.7.0-develop00310/exceldatareader.3.7.0-develop00310.nupkg.sha512",
+    "/home/grzybek/.nuget/packages/libsassbuilder/2.0.1/libsassbuilder.2.0.1.nupkg.sha512",
     "/home/grzybek/.nuget/packages/markdig/0.26.0/markdig.0.26.0.nupkg.sha512",
     "/home/grzybek/.nuget/packages/markdowneditor/1.0.0/markdowneditor.1.0.0.nupkg.sha512",
     "/home/grzybek/.nuget/packages/microsoft.aspnetcore.authorization/6.0.1/microsoft.aspnetcore.authorization.6.0.1.nupkg.sha512",
@@ -16,6 +17,7 @@
     "/home/grzybek/.nuget/packages/microsoft.aspnetcore.components.forms/6.0.1/microsoft.aspnetcore.components.forms.6.0.1.nupkg.sha512",
     "/home/grzybek/.nuget/packages/microsoft.aspnetcore.components.web/6.0.1/microsoft.aspnetcore.components.web.6.0.1.nupkg.sha512",
     "/home/grzybek/.nuget/packages/microsoft.aspnetcore.metadata/6.0.1/microsoft.aspnetcore.metadata.6.0.1.nupkg.sha512",
+    "/home/grzybek/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/home/grzybek/.nuget/packages/microsoft.extensions.configuration/3.1.5/microsoft.extensions.configuration.3.1.5.nupkg.sha512",
     "/home/grzybek/.nuget/packages/microsoft.extensions.configuration.abstractions/3.1.5/microsoft.extensions.configuration.abstractions.3.1.5.nupkg.sha512",
     "/home/grzybek/.nuget/packages/microsoft.extensions.configuration.fileextensions/3.1.5/microsoft.extensions.configuration.fileextensions.3.1.5.nupkg.sha512",
@@ -35,6 +37,7 @@
     "/home/grzybek/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
     "/home/grzybek/.nuget/packages/psc.blazor.components.common/6.0.4/psc.blazor.components.common.6.0.4.nupkg.sha512",
     "/home/grzybek/.nuget/packages/psc.blazor.components.markdowneditor/2.0.3/psc.blazor.components.markdowneditor.2.0.3.nupkg.sha512",
+    "/home/grzybek/.nuget/packages/radzen.blazor/4.6.5/radzen.blazor.4.6.5.nupkg.sha512",
     "/home/grzybek/.nuget/packages/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "/home/grzybek/.nuget/packages/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "/home/grzybek/.nuget/packages/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
@@ -71,6 +74,7 @@
     "/home/grzybek/.nuget/packages/system.io.filesystem.primitives/4.3.0/system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "/home/grzybek/.nuget/packages/system.io.pipelines/6.0.1/system.io.pipelines.6.0.1.nupkg.sha512",
     "/home/grzybek/.nuget/packages/system.linq/4.3.0/system.linq.4.3.0.nupkg.sha512",
+    "/home/grzybek/.nuget/packages/system.linq.dynamic.core/1.2.22/system.linq.dynamic.core.1.2.22.nupkg.sha512",
     "/home/grzybek/.nuget/packages/system.reflection/4.3.0/system.reflection.4.3.0.nupkg.sha512",
     "/home/grzybek/.nuget/packages/system.reflection.extensions/4.3.0/system.reflection.extensions.4.3.0.nupkg.sha512",
     "/home/grzybek/.nuget/packages/system.reflection.primitives/4.3.0/system.reflection.primitives.4.3.0.nupkg.sha512",
@@ -103,7 +107,7 @@
     "/home/grzybek/.nuget/packages/system.xml.xmldocument/4.3.0/system.xml.xmldocument.4.3.0.nupkg.sha512",
     "/home/grzybek/.nuget/packages/system.xml.xpath/4.3.0/system.xml.xpath.4.3.0.nupkg.sha512",
     "/home/grzybek/.nuget/packages/system.xml.xpath.xmldocument/4.3.0/system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
-    "/home/grzybek/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.0/microsoft.aspnetcore.app.ref.6.0.0.nupkg.sha512"
+    "/home/grzybek/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
   ],
   "logs": []
 }

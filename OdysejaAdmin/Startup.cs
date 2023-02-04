@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using OdysejaAdmin.Data;
 using OdysejaAdmin.Services;
 using OdysejaAdmin.Stores;
+using Radzen;
 
 namespace OdysejaAdmin
 {
@@ -35,6 +36,8 @@ namespace OdysejaAdmin
             services.AddSingleton<RestService>();
             services.AddSingleton<UserStore>();
             services.AddDistributedMemoryCache();
+            services.AddScoped<DialogService>();
+            services.AddScoped<NotificationService>();
 
             services.AddHttpClient("HttpClient",new Action<HttpClient>(client => new HttpClient()));
 

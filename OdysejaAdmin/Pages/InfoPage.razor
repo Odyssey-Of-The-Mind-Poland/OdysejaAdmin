@@ -26,7 +26,7 @@
        style="display: inline-block;"
        size="10px"/>
 
-<textarea class="textarea" placeholder="e.g. Hello world" @bind="_infoText"></textarea>
+<RadzenHtmlEditor @bind-Value=@_infoText style="height: 500px; margin-bottom: 1rem;" />
 
 <button class="button is-primary"
         @onclick="AddInfo"
