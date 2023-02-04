@@ -27,6 +27,7 @@ namespace OdysejaAdmin.Services
             bool success = response.StatusCode == HttpStatusCode.OK;
             if (!success) return success;
             IEnumerable<string> cookies = response.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value;
+            if (cookies == null) return success;
             _userStore.SetCookie(cookies.First().Split("=")[1]);
             return success;
         }

@@ -1,10 +1,11 @@
 @implements IDisposable
 @inject AuthenticationService AuthenticationService
 @inject UserStore UserStore
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
-        @if (UserStore.GetState().IsAuth)
+        @if (isAuth)
         {
             <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)"/>   
         }
@@ -27,11 +28,18 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        UserStore.AddStateListeners(StateHasChanged);
+        CheckAuth();
+        UserStore.AddStateListeners(CheckAuth);
     }
     
     public void Dispose()
     {
         UserStore.RemoveStateListeners(StateHasChanged);
+    }
+
+    async void CheckAuth()
+    {
+        isAuth = await localStorage.GetItemAsync<bool>("auth");
+        StateHasChanged();
     }
 }

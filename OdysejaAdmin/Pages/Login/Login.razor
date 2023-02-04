@@ -1,6 +1,7 @@
 ﻿@using OdysejaAdmin.Data
 @inject AuthenticationService AuthenticationService
 @inject UserStore UserStore
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 
 <section class="hero is-primary is-fullheight">
     <div class="hero-body">
@@ -57,6 +58,7 @@
     private async void login()
     {
         Success = await AuthenticationService.Authenticate(userCredentials.username, userCredentials.password);
+        await localStorage.SetItemAsync("auth", Success);
         UserStore.SetAuth(Success);
     }
 

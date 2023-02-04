@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "3UGJ0AjHeEkdbJilvZDF4esd7xtjNGlqKL8osv8gr4gpSKbRytrik7/BoxoqB+s/OezY13/dPQ+r6EmYTiyF+Q==",
+  "dgSpecHash": "KFPd18YBTK8Mctjoxtya5vul80NXXYfNqIXirB6q5GABGPm0DSTcsWTyFDv4ztOPvNDWHOtcV+ydoVZDxTdxjw==",
   "success": true,
   "projectFilePath": "/home/grzybek/projects/OdysejaAdmin/OdysejaAdmin/OdysejaAdmin.csproj",
   "expectedPackageFiles": [
+    "/home/grzybek/.nuget/packages/blazored.localstorage/4.3.0/blazored.localstorage.4.3.0.nupkg.sha512",
     "/home/grzybek/.nuget/packages/blazorinputfile/0.2.0/blazorinputfile.0.2.0.nupkg.sha512",
     "/home/grzybek/.nuget/packages/blazorise/0.9.2.1/blazorise.0.9.2.1.nupkg.sha512",
     "/home/grzybek/.nuget/packages/epplus/5.4.2/epplus.5.4.2.nupkg.sha512",

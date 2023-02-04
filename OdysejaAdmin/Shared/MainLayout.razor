@@ -1,5 +1,6 @@
 ﻿@inherits Microsoft.AspNetCore.Components.LayoutComponentBase
 @inject AuthenticationService AuthenticationService
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 
 <div class="page">
     <div class="sidebar">
@@ -19,8 +20,9 @@
 
 @code
 {
-    private void logout()
+    private async void logout()
     {
+        await localStorage.SetItemAsync("auth", false);
         AuthenticationService.Logout();
     }
 }
