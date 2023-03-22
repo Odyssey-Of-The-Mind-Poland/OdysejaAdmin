@@ -80,23 +80,25 @@
     {
         int x = corner.X;
         int y = corner.Y;
-        string[] stage = GetCellValue(x + 1, y).Split("-");
-        int stageNumber = Int32.Parse(stage[0].Split(" ")[1]);
-        stages.Add(new StageModel(0, stage[stage.Length - 1], _selectedCity, stageNumber));
-        string perfDay = DetermineDay(GetCellValue(x, y + 1));
-        string spontDay = DetermineDay(GetCellValue(x + 2, y + 1));
+        string[] stage = GetCellValue(x, y).Split("|");
+        int stageNumber = Int32.Parse(stage[2].Split(" ")[2]);
+        stages.Add(new StageModel(0, stage[2].Split(" – ")[1], _selectedCity, stageNumber));
+        string perfDay = DeterminePerfDay(GetCellValue(x, y));
+        string spontDay = DetermineSpontanDay(GetCellValue(x, y));
         y += 2;
         int problem = 0;
         int age = 0;
         int part = 0;
+        string league = "";
         do
         {
             string val = GetCellValue(x, y);
-            if (String.IsNullOrEmpty(val))
+            if (val.Contains("PROBLEM"))
             {
-                val = GetCellValue(x + 1, y);
+                val = GetCellValue(x, y);
                 string[] splited = val.Split(" ");
                 problem = 0;
+                league = "";
                 try
                 {
                     problem = Int32.Parse(splited[1].ToCharArray()[0].ToString());
@@ -106,7 +108,12 @@
                     Console.WriteLine("Couldn't parse problem for: " + val + " Setting as junior problem");
                 }
                 var last = splited[splited.Length - 1];
-                if (last.Length > 1 && last[1] == ')')
+                if (val.Contains("LIGA"))
+                {
+                    age = Roman.RomanToInteger(splited[splited.Length - 4]);
+                    league = last;
+                }
+                else if (last.Length > 1 && last[1] == ')')
                 {
                     age = Roman.RomanToInteger(splited[splited.Length - 3]);
                     part = Int32.Parse(last[0].ToString());
@@ -125,7 +132,7 @@
                     GetCellValue(x, y).Substring(GetCellValue(x, y).Length >= 11 ? 11 : 0,
                         GetCellValue(x, y).Length >= 5 ? 5 : GetCellValue(x, y).Length),
                     GetCellValue(x + 2, y).Substring(GetCellValue(x + 2, y).Length >= 11 ? 11 : 0,
-                        GetCellValue(x + 2, y).Length >= 5 ? 5 : GetCellValue(x + 2, y).Length), part, perfDay, spontDay);
+                        GetCellValue(x + 2, y).Length >= 5 ? 5 : GetCellValue(x + 2, y).Length), part, perfDay, spontDay, league);
                 perf.Add(performance);
             }
             y++;
@@ -153,7 +160,7 @@
                 try
                 {
                     string currentCellValue = sheet.Cells[y, x]?.Value?.ToString();
-                    if (currentCellValue == "Godzina występu") corners.Add(new Coordinate(x, y));
+                    if (currentCellValue != null && currentCellValue.Contains("DZIEŃ")) corners.Add(new Coordinate(x, y));
                 }
                 catch (Exception e)
                 {
@@ -185,8 +192,13 @@
         sheet = package.Workbook.Worksheets.FirstOrDefault();
     }
 
-    private String DetermineDay(String day)
+    private String DeterminePerfDay(String day)
     {
-        return day.Contains("sobotę") ? "Sobota" : "Niedziela";
+        return day.Contains("SOBOTA") ? "Sobota" : "Niedziela";
+    }
+
+    private String DetermineSpontanDay(String day)
+    {
+        return day.Contains("SOBOTA") ? "Niedziela" : "Sobota";
     }
 }

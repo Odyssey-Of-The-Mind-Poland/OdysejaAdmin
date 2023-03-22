@@ -14,9 +14,10 @@
 
         public string performanceDay { get; set; }
         public string spontanDay { get; set; }
+        public string league { get; set; }
 
         public Performance(int id, string city, string team, int problem, int age, int stage, string performance,
-            string spontan, int part, string performanceDay, string spontanDay)
+            string spontan, int part, string performanceDay, string spontanDay, string league)
         {
             this.id = id;
             this.city = city;
@@ -29,6 +30,7 @@
             this.part = part;
             this.performanceDay = performanceDay;
             this.spontanDay = spontanDay;
+            this.league = league;
         }
     }
 }
