@@ -36,7 +36,7 @@
     public int Id { get; set; }
 
     private Info _info;
-    
+
     protected async override void OnInitialized()
     {
         base.OnInitialized();
@@ -48,7 +48,7 @@
     private async void Save()
     {
         await RestService.Delete("/info", _info.id.ToString());
-        var info = new Info(0, _info.infoName, _info.infoText, _info.city, _info.category, _info.category, "");
+        var info = new Info(0, _info.infoName, _info.infoText, _info.city, _info.category, _info.sortNumber, "");
         await RestService.Post("/info", info);
         _navManager.NavigateTo("/info");
     }
